@@ -56,8 +56,6 @@ router.post('/login', async (req, res, next) => {
       return res.json({ status: 401, msg: '비밀번호 오류!'})
     }
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET)
-
-    //
     res.cookie('token', token, { httpOnly: true, secure: true })
     res.json({ status: 201, token: token });
   } catch (err) {
